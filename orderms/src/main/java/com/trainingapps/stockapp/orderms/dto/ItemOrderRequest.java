@@ -9,10 +9,10 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class ItemOrderRequest {
 
-	@NotNull
+	@NotNull(message="provide some stock id")
 	private long stockId;
 	
-	@NotNull
+	@NotNull(message="provide some units")
 	private int units;
 
 	public long getStockId() {

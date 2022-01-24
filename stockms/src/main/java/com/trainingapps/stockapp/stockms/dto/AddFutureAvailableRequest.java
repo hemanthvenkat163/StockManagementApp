@@ -12,9 +12,9 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class AddFutureAvailableRequest {
 
-	@NotNull
+	@NotNull(message="please provide some valid date")
 	private String availableDate;
-	@NotNull
+	@NotNull(message="please provide some valid name")
 	private String stockName;
 
 	public String getAvailableDate() {

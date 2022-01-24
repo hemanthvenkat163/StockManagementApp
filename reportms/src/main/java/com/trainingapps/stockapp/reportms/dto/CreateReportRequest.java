@@ -1,6 +1,7 @@
 package com.trainingapps.stockapp.reportms.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
 
@@ -10,12 +11,13 @@ import org.springframework.validation.annotation.Validated;
  * @author Hemanth Venkat
  *
  */
+
 @Validated
 public class CreateReportRequest {
 
-	@NotBlank
+	@NotNull(message="please provide some valid date, dont provide null values")
 	private String startPeriod;
-	@NotBlank
+	@NotNull(message="please provide some valid date, dont provide null values")
 	private String endPeriod;
 
 	public String getStartPeriod() {

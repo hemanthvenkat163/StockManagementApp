@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\Hemanth Venkat\Desktop\CAPGEMINI\workspace\StockApp\stockmanagementapplication\reportms\.metadata\.plugins\org.eclipse.jdt.core

@@ -1,0 +1,15 @@
+
+\
+java:S1612/",Replace this lambda with a method reference.(¼êĞÈûÿÿÿÿHRMINORZ
+CODE_SMELL
+V
+java:S11729"&Remove these unused method parameters.(¢ô¬ùÿÿÿÿHRMAJORZ
+CODE_SMELL
+Z
+java:S1172I"/Remove this unused method parameter "orderIds".(²ç™…HRMAJORZ
+CODE_SMELL
+k	java:S125K"<This block of commented-out lines of code should be removed.( ÇçÂúÿÿÿÿHRMAJORZ
+CODE_SMELL
+[
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒHRMINORZ
+CODE_SMELL

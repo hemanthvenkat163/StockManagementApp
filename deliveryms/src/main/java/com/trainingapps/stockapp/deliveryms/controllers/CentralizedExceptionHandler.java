@@ -1,5 +1,9 @@
 package com.trainingapps.stockapp.deliveryms.controllers;
 
+import java.sql.SQLException;
+
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -22,4 +26,17 @@ public class CentralizedExceptionHandler {
 	public String handleInvalidStatus(InvalidStatusException e) {
 		return e.getMessage();
 	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ConstraintViolationException.class)
+    public String handleConstraintViolationException(ConstraintViolationException e){
+        return e.getMessage();
+    }
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(SQLException.class)
+    public String handlePSQLException(SQLException e){
+        return e.getMessage();
+    }
+	
 }

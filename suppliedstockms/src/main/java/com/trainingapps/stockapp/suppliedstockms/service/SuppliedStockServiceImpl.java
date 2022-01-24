@@ -13,6 +13,8 @@ import com.trainingapps.stockapp.suppliedstockms.dao.ISuppliedStockRepository;
 import com.trainingapps.stockapp.suppliedstockms.dto.AddSupplyStockRequest;
 import com.trainingapps.stockapp.suppliedstockms.dto.SuppliedStockDetails;
 import com.trainingapps.stockapp.suppliedstockms.entities.SuppliedStock;
+import com.trainingapps.stockapp.suppliedstockms.exceptions.InvalidDatesException;
+import com.trainingapps.stockapp.suppliedstockms.exceptions.InvalidEndDateException;
 import com.trainingapps.stockapp.suppliedstockms.exceptions.InvalidSupplierIdDetailsException;
 import com.trainingapps.stockapp.suppliedstockms.exceptions.InvalidSupplierIdException;
 import com.trainingapps.stockapp.suppliedstockms.exceptions.SuppliedStockNotFoundException;
@@ -65,7 +67,7 @@ public class SuppliedStockServiceImpl implements ISuppliedStockService {
 	public List<SuppliedStockDetails> findSuppliedStockDetailsBySupplierId(Long supplierId) {
 		List<SuppliedStock> suppliedStocks = suppliedStockRepo.findBySupplierId(supplierId);
 		List<SuppliedStockDetails> desired = suppliedStockUtil.toDetailsList(suppliedStocks);
-		if (desired == null) {
+		if (desired.isEmpty()) {
 			throw new InvalidSupplierIdException(
 					"Supplied Stock Details are not found for the given supplierId" + supplierId);
 
@@ -83,7 +85,7 @@ public class SuppliedStockServiceImpl implements ISuppliedStockService {
 		Optional<SuppliedStock> optional = suppliedStockRepo.findById(suppliedStockId);
 		if (!optional.isPresent()) {
 			throw new SuppliedStockNotFoundException(
-					"Supplied Stock is Not Found for the given suppliedId" + suppliedStockId);
+					"Supplied Stock is Not Found for the given suppliedId " + suppliedStockId);
 
 		}
 
@@ -98,12 +100,12 @@ public class SuppliedStockServiceImpl implements ISuppliedStockService {
 	@Override
 	public List<SuppliedStockDetails> findSuppliedStocksBySupplierId(Long supplierId, String startDate,
 			String endDate) {
-
+		validateDates(startDate,endDate);
 		LocalDate startPeriod = dateConverter.toDate(startDate);
 		LocalDate endPeriod = dateConverter.toDate(endDate);
 		List<SuppliedStock> details = suppliedStockRepo.findSuppliedStocksBySupplierId(supplierId, startPeriod,
 				endPeriod);
-		if (details == null) {
+		if (details.isEmpty()) {
 			throw new InvalidSupplierIdDetailsException(
 					"Supplied Stock Details are not found for the given supplierId in the given range. Please check the Parameters entered");
 
@@ -112,4 +114,30 @@ public class SuppliedStockServiceImpl implements ISuppliedStockService {
 		return suppliedStockUtil.toDetailsList(details);
 	}
 
+	 /**
+	  * Validating the startDate and endDate
+	  * @param startDate
+	  * @param endDate
+	  */
+	public void validateDates(String startDateText, String endDateText) {
+		
+			/*
+			 * if(startDateText == null) { throw new
+			 * InvalidStartDateException("Please provide some date"); } if(endDateText ==
+			 * null) { throw new InvalidEndDateException("Please provide some date"); }
+			 */
+		
+		LocalDate startDate = dateConverter.toDate(startDateText);
+		LocalDate endDate = dateConverter.toDate(endDateText);
+		
+		
+		if(endDate.isBefore(startDate))
+		{
+			throw new InvalidEndDateException("EndDate should not be the earliest date than startDate");
+		}
+		if(endDate.equals(startDate))
+		{
+			throw new InvalidDatesException("Both dates should not be same ");
+		}
+	}
 }

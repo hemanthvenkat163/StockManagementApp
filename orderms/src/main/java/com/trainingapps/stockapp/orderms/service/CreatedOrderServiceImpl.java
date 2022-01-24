@@ -79,7 +79,7 @@ public class CreatedOrderServiceImpl implements ICreatedOrderService {
 
     public List<OrderStockItem> toOrderStockItems(Set<ItemOrderRequest> requestedItems, Map<Long, Double> prices,
                                                   CreatedOrder createdOrder) {
-        List<OrderStockItem> desired = requestedItems.stream().map(item -> {
+        	return   requestedItems.stream().map(item -> {
             OrderStockItem orderItem = new OrderStockItem();
             orderItem.setStockId(item.getStockId());
             double stockPrice = prices.get(item.getStockId());
@@ -98,7 +98,7 @@ public class CreatedOrderServiceImpl implements ICreatedOrderService {
             orderItem.setProvidedUnits(providedUnits);
             return orderItem;
         }).collect(Collectors.toList());
-        return desired;
+       
     }
 
     /**

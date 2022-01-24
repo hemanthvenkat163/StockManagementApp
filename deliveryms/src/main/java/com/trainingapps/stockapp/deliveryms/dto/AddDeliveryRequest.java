@@ -1,6 +1,7 @@
 package com.trainingapps.stockapp.deliveryms.dto;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
@@ -12,7 +13,8 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 public class AddDeliveryRequest {
-	@NotNull
+	
+	@NotNull(message="please provide some valid orderId")
 	@Min(1)
 	private Long orderId;
 	

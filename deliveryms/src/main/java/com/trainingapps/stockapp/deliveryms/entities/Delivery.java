@@ -4,6 +4,7 @@ package com.trainingapps.stockapp.deliveryms.entities;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,6 +24,8 @@ public class Delivery {
 	@GeneratedValue
 	@Id
 	private Long deliveryId;
+	
+	@Column(unique=true)
 	private Long orderId;
 
 	private LocalDate deliveredDate;

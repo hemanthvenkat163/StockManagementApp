@@ -1,16 +1,24 @@
 package com.trainingapps.stockapp.suppliedstockms.dto;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 public class AddSupplyStockRequest {
+	
+	@NotNull(message="please provide some valid stockid")
 	@Min(1)
 	private Long stockId;
+	@NotNull(message="please provide some valid supplierid")
 	@Min(1)
 	private Long supplierId;
+	@NotNull(message="please provide some valid suppliedcost")
 	@Min(1)
 	private Double suppliedCost;
+	@NotNull(message="please provide some valid units")
 	@Min(1)
 	private int units;
+	@NotNull(message="please provide some valid date")
+	@NotNull
 	private String suppliedDate;
 
 	public Long getStockId() {

@@ -12,10 +12,10 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 public class ChangeDeliveryStatus {
-	@NotNull
+	@NotNull(message="please provide some valid orderId")
 	@Min(1)
 	private Long orderId;
-	@NotNull
+	@NotNull(message="please provide some valid Status")
 	private String deliveryStatus;
 
 	

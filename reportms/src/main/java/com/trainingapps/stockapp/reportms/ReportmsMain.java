@@ -20,7 +20,7 @@ public class ReportmsMain {
 		Log.info("***Repository added successfully");
 		Log.info("***service methods are running successfully");
 		
-		Log.info("***Application starte successfully on port number 8484");
+		Log.info("***Application starte successfully ");
 	}
 	
 	@LoadBalanced

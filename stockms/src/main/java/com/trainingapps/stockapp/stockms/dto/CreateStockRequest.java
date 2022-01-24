@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.Length;
 
 public class CreateStockRequest {
 
+	@NotNull(message="provide some stockname")
 	@Length(max=200, min=1)
 	private String stockname;
 	@NotNull

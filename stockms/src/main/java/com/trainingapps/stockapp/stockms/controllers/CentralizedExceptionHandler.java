@@ -1,5 +1,7 @@
 package com.trainingapps.stockapp.stockms.controllers;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -40,6 +42,17 @@ public class CentralizedExceptionHandler {
 		return e.getMessage();
 	}
 
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ConstraintViolationException.class)
+    public String handleConstraintViolationException(ConstraintViolationException e){
+        return e.getMessage();
+    }
 	
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalStateException.class)
+    public String handleIllegalStateException(IllegalStateException e){
+        return e.getMessage();
+    }
 
 }

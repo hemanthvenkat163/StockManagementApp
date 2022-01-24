@@ -2,8 +2,6 @@ package com.trainingapps.stockapp.orderms.dto;
 
 public class StockDetails {
 
-	
-
 	private long id;
 	private String stockname;
 	private int units;

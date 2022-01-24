@@ -20,6 +20,7 @@ import com.trainingapps.stockapp.reportms.dto.ReportDetails;
 import com.trainingapps.stockapp.reportms.entities.Report;
 import com.trainingapps.stockapp.reportms.exceptions.InvalidDatesException;
 import com.trainingapps.stockapp.reportms.exceptions.InvalidEndDateException;
+import com.trainingapps.stockapp.reportms.exceptions.InvalidStartPeriodException;
 import com.trainingapps.stockapp.reportms.exceptions.ReportNotFoundException;
 import com.trainingapps.stockapp.reportms.util.DateConverter;
 import com.trainingapps.stockapp.reportms.util.ReportUtil;
@@ -158,8 +159,15 @@ public class ReportServiceImpl implements IReportService {
 	  */
 	public void validateDates(String startDateText, String endDateText) {
 		
+			/*
+			 * if(startDateText == null) { throw new
+			 * InvalidStartDateException("Please provide some date"); } if(endDateText ==
+			 * null) { throw new InvalidEndDateException("Please provide some date"); }
+			 */
+		
 		LocalDate startDate = dateConverter.toDate(startDateText);
 		LocalDate endDate = dateConverter.toDate(endDateText);
+		
 		
 		if(endDate.isBefore(startDate))
 		{
@@ -187,5 +195,7 @@ public class ReportServiceImpl implements IReportService {
 		List<Report> reports = reportRepo.findAll();
 		return reportUtil.toReportDetailsList(reports);
 	}
+	
+	
 	
 }
